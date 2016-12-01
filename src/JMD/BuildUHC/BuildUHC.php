@@ -359,7 +359,7 @@ class BuildUHC extends PluginBase implements Listener {
                                     $config = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
                                     $config->set("money",$args[0]);
                                     $config->save();
-                                    $player->sendMessage(TE::GREEN."Prize of BuildUHC is: ".TE::AQUA.$args[0]);
+                                    $player->sendMessage(TE::GREEN."Pentru ca ai castigat, ai primit: ".TE::AQUA.$args[0]);
                                 }
                                 }
                                 return true;
@@ -496,7 +496,7 @@ class BuildUHC extends PluginBase implements Listener {
 }
 
 class RefreshSigns extends PluginTask {
-    public $prefix = TE::GRAY . "[" . TE::GREEN . TE::BOLD . "Build" . TE::RED . "UHC" . TE::RESET . TE::GRAY . "]";
+    public $prefix = "§aMCPE §8>> §r§f";
 	public function __construct($plugin)
 	{
 		$this->plugin = $plugin;
