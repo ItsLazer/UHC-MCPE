@@ -198,7 +198,7 @@ class BuildUHC extends PluginBase implements Listener {
                                 }
 				if($config->get($level . "PlayTime") <= 300)
 				{ 
-					if(!$event->getBlock()->getID() == 20)
+					if($event->getBlock()->getID() == 20)
 					{
 						$event->setCancelled(true);
 					}
