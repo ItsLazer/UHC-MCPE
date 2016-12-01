@@ -34,7 +34,7 @@ use pocketmine\block\Air;
 
 class BuildUHC extends PluginBase implements Listener {
 
-    public $prefix = TE::GRAY . "[" . TE::GREEN . TE::BOLD . "Build" . TE::RED . "UHC" . TE::RESET . TE::GRAY . "]";
+    public $prefix =  "§aMCPE §8>> §r§f";
 	public $mode = 0;
 	public $arenas = array();
 	public $currentLevel = "";
@@ -584,7 +584,7 @@ class GameSender extends PluginTask {
                                                                     $levelArena->setTime(0);
                                                                     $levelArena->stopTime();
                                                                 }
-								if($timeToStart<=0)
+								/*if($timeToStart<=0)
 								{
 									$this->refillChests($levelArena);
                                                                         foreach($playersArena as $pl)
@@ -602,7 +602,7 @@ class GameSender extends PluginTask {
 		                                                                    $pl->getInventory()->setHotbarSlotIndex(0, 0);	
                                                                            
                                                                         }
-								}
+								}*/
 								$config->set($arena . "StartTime", $timeToStart);
 								 
 							}
@@ -632,7 +632,7 @@ class GameSender extends PluginTask {
                                                                     {
                                                                     foreach($playersArena as $pl)
                                                                         {
-                                                                        $pl->sendPopup(TE::GOLD." You are currently on BuildUHC".TE::RESET);
+                                                                        //$pl->sendPopup(TE::GOLD." Acum esti in meci.".TE::RESET);
                                                                         }
                                                                 }
 								$time--;
@@ -646,8 +646,10 @@ class GameSender extends PluginTask {
 									foreach($playersArena as $pl)
 									{
 										$pl->sendMessage("§e>--------------------------------");
-                                                                                $pl->sendMessage("§e>§cAttention: §6The game is starting!");
-                                                                                $pl->sendMessage("§e>§fUsing the map: §b" . $arena);
+                                                                                $pl->sendMessage("§e>§cATENTIE! Jocul a inceput!");
+										$pl->sendMessage("§e>§c Strange obiecte timp de 10 minute si omoara-i pe toti!");
+										$pl->sendMessage("§e>§c Poti merge maxim 100 blocuri!");
+                                                                                $pl->sendMessage("§e>§fMult noroc!");
                                                                                 $pl->sendMessage("§e>--------------------------------");
 									}
 								}
@@ -655,9 +657,9 @@ class GameSender extends PluginTask {
 								{
 									foreach($playersArena as $pl)
 									{
-										$pl->sendMessage("§e>--------------------------");
-                                                                                $pl->sendMessage("§e>§5Made by JMD");
-                                                                                $pl->sendMessage("§e>--------------------------");
+										//$pl->sendMessage("§e>--------------------------");
+                                                                                //$pl->sendMessage("§e>§5Made by JMD");
+                                                                                //$pl->sendMessage("§e>--------------------------");
 									}
 								}
                                    
@@ -719,8 +721,8 @@ class GameSender extends PluginTask {
 								{
 									$pl->teleport($this->getOwner()->getServer()->getDefaultLevel()->getSafeSpawn(),0,0);
 									$pl->getInventory()->clearAll();
-										$pl->sendMessage($this->prefix . $pl->getName() . " §ehas won BuildUHC");
-										$pl->sendMessage(" §aA new BuildUHC game has opened!§c Map:§e§l" . $arena);
+										$pl->sendMessage($this->prefix . $pl->getName() . " §ea castigat!");
+										$pl->sendMessage(" §aO noua arena este libera!§c Mapa:§e§l" .  $arena);
                                                                         $pl->removeAllEffects();
                                                                         $pl->setHealth(20);
                                                                         $pl->setNameTag($pl->getName());
