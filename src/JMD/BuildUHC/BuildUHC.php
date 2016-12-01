@@ -66,7 +66,7 @@ class BuildUHC extends PluginBase implements Listener {
 			$this->getServer()->loadLevel($lev);
 		}
 		$items = array(array(1,0,30),array(1,0,20),array(3,0,15),array(3,0,25),array(4,0,35),array(4,0,15),array(260,0,5),array(261,0,1),array(262,0,6),array(267,0,1),array(268,0,1),array(272,0,1),array(276,0,1),array(283,0,1),array(297,0,3),array(298,0,1),array(299,0,1),array(300,0,1),array(301,0,1),array(303,0,1),array(304,0,1),array(310,0,1),array(313,0,1),array(314,0,1),array(315,0,1),array(316,0,1),array(317,0,1),array(320,0,4),array(354,0,1),array(364,0,4),array(366,0,5),array(391,0,5),array(322,0,2));
-		if($config->get("chestitems")==null)
+		if($config->get("chestitems") !== null)
 		{
 			$config->set("chestitems",$items);
 		}
@@ -191,11 +191,11 @@ class BuildUHC extends PluginBase implements Listener {
 		{
                         $config = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
                         if($config->get($level . "PlayTime") != null)
-                        {
-                                if($config->get($level . "PlayTime") > 299)
-                                {
-                                        $event->setCancelled(true);
-                                }
+			{
+				if($config->get($level . "PlayTime") <= 600)
+				{ 
+					$event->setCancelled(true);
+				}
 				if($config->get($level . "PlayTime") <= 300)
 				{ 
 					if($event->getBlock()->getID() == 20)
@@ -390,7 +390,7 @@ class BuildUHC extends PluginBase implements Listener {
 		{
 			if($this->mode==26)
 			{
-				$tile->setText(TE::AQUA . "[Join]",TE::YELLOW  . "0 / 2","§f" . $this->currentLevel,$this->prefix);
+				$tile->setText(TE::AQUA . "[Join]",TE::YELLOW  . "0 / 2","§f" . $this->currentLevel,TE::YELLOW . "SOLO");
 				$this->refreshArenas();
 				$this->currentLevel = "";
 				$this->mode = 0;
@@ -421,7 +421,7 @@ class BuildUHC extends PluginBase implements Listener {
                                                 }
                                                 foreach($level->getPlayers() as $playersinarena)
                                                         {
-                                                        $playersinarena->sendMessage("§l§8»§r§5" . $player->getName() . " §bhas joined the BuildUHC");
+                                                        $playersinarena->sendMessage("§l§8»§r§5" . $player->getName() . " §ba intrat in arena!");
                                                         }
 						$spawn = new Position($thespawn[0]+0.5,$thespawn[1],$thespawn[2]+0.5,$level);
 						$level->loadChunk($spawn->getFloorX(), $spawn->getFloorZ());
@@ -541,7 +541,7 @@ class RefreshSigns extends PluginTask {
 }
 
 class GameSender extends PluginTask {
-    public $prefix = TE::GRAY . "[" . TE::GREEN . TE::BOLD . "Build" . TE::RED . "UHC" . TE::RESET . TE::GRAY . "]";
+    public $prefix = "§aMCPE §8>> §r§f";
 	public function __construct($plugin)
 	{
 		$this->plugin = $plugin;
@@ -584,7 +584,7 @@ class GameSender extends PluginTask {
 									$playerlang = new Config($this->plugin->getDataFolder() . "/languages.yml", Config::YAML);
 									$lang = new Config($this->plugin->getDataFolder() . "/lang.yml", Config::YAML);
 									$toUse = $lang->get($playerlang->get($pl->getName()));
-									$pl->sendPopup(TE::GREEN . $timeToStart . " " . $toUse["seconds"].TE::RESET);
+									$pl->sendMessage(TE::GREEN . $timeToStart . " " . $toUse["seconds"].TE::RESET);
 								}
                                                                 if($timeToStart==9)
                                                                 {
@@ -655,18 +655,19 @@ class GameSender extends PluginTask {
 										$pl->sendMessage("§e>--------------------------------");
                                                                                 $pl->sendMessage("§e>§cATENTIE! Jocul a inceput!");
 										$pl->sendMessage("§e>§c Strange obiecte timp de 10 minute si omoara-i pe toti!");
+										$pl->sendMessage("§e>§c Dupa 5 minute o sa te poti lupta!");
 										$pl->sendMessage("§e>§c Poti merge maxim 100 blocuri!");
-                                                                                $pl->sendMessage("§e>§fMult noroc!");
+                                                                                $pl->sendMessage("§e>§eMult noroc!");
                                                                                 $pl->sendMessage("§e>--------------------------------");
 									}
 								}
-                                                                if($time == 250)
+                                                                if($time == 300)
 								{
 									foreach($playersArena as $pl)
 									{
-										//$pl->sendMessage("§e>--------------------------");
-                                                                                //$pl->sendMessage("§e>§5Made by JMD");
-                                                                                //$pl->sendMessage("§e>--------------------------");
+										$pl->sendMessage("§e>--------------------------");
+                                                                                $pl->sendMessage("§e> §5Au trecut 5 minute. De acum te poti lupta!");
+                                                                                $pl->sendMessage("§e>--------------------------");
 									}
 								}
                                    
