@@ -190,18 +190,15 @@ class BuildUHC extends PluginBase implements Listener {
 		if(in_array($level,$this->arenas))
 		{
                         $config = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
-                        if($config->get($level . "PlayTime") != null)
-			{
-				if($config->get($level . "PlayTime") > 300)
-				{ 
-					$event->setCancelled(true);
+			if($config->get($level . "PlayTime") > 300)
+			{ 
+				$event->setCancelled(true);
 				}
-				if($config->get($level . "PlayTime") < 600)
-				{ 
+			if($config->get($level . "PlayTime") < 600)
+			{ 
 					if($event->getBlock()->getID() == 20)
-					{
-						$event->setCancelled(true);
-					}
+				{
+					$event->setCancelled(true);
 				}
                         }
 		}
@@ -229,12 +226,9 @@ class BuildUHC extends PluginBase implements Listener {
 				{
 					$level = $player->getLevel()->getFolderName();
 					$config = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
-					if($config->get($level . "PlayTime") != null)
+					if($config->get($level . "PlayTime") > 300)
 					{
-						if($config->get($level . "PlayTime") > 300)
-						{
-							$event->setCancelled(true);
-						}
+						$event->setCancelled(true);
 					}
 				}
 			}
