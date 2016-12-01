@@ -41,7 +41,7 @@ class BuildUHC extends PluginBase implements Listener {
 	
 	public function onEnable()
 	{
-		  $this->getLogger()->info(TE::DARK_AQUA . "BuildUHC by JMD");
+		  $this->getLogger()->info(TE::DARK_AQUA . "BuildUHC by JMD and edited by NycuRO");
                   
                 $this->getServer()->getPluginManager()->registerEvents($this ,$this);
                 $this->economy = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
