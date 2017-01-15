@@ -34,14 +34,14 @@ use pocketmine\block\Air;
 
 class BuildUHC extends PluginBase implements Listener {
 
-    public $prefix =  "§aMCPE §8>> §r§f";
+    public $prefix =  "§3BUILDUHC >§r§f";
 	public $mode = 0;
 	public $arenas = array();
 	public $currentLevel = "";
 	
 	public function onEnable()
 	{
-		  $this->getLogger()->info(TE::DARK_AQUA . "BuildUHC by JMD and edited by NycuRO");
+		  $this->getLogger()->info(TE::DARK_AQUA . "BuildUHC by JMD and edited by @LazerplayzMC");
                   
                 $this->getServer()->getPluginManager()->registerEvents($this ,$this);
                 $this->economy = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
